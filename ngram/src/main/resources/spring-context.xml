@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:lang="http://www.springframework.org/schema/lang"
+       xmlns:util="http://www.springframework.org/schema/util"
+
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+          http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+          http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+          http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-3.0.xsd
+          http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+    
+    
+    <bean id="generator" class="com.endeca.index.ngram.core.SimpleGramGenerator">
+        <property name="gramConfig" ref="gramConfig"></property>
+        <property name="sourceFilterChain" ref="sourceFilterChain"></property>
+        <property name="segmentFilterChain" ref="segmentFilterChain"></property>
+        <property name="gramFilterChain" ref="gramFilterChain"></property>
+    </bean>
+    
+    <bean id="gramConfig" class="com.endeca.index.ngram.core.GramConfig">
+        <property name="parser">
+            <bean class="com.endeca.index.ngram.core.DefaultDimensionParser">
+                <constructor-arg value="2-6"></constructor-arg>
+            </bean>
+        </property>
+    </bean>
+    
+    <bean id="sourceFilterChain" class="com.endeca.index.ngram.core.SourceFilterChain">
+        <property name="filterList">
+            <list>
+                <bean class="com.endeca.index.ngram.core.LowerCaseSourceFilter"></bean>
+                <bean class="com.endeca.index.ngram.core.SpaceSourceFilter"></bean>
+            </list>
+        </property>
+    </bean>
+    
+    <bean id="segmentFilterChain" class="com.endeca.index.ngram.core.SegmentFilterChain">
+        <property name="filterList">
+            <list>
+                <bean class="com.endeca.index.ngram.core.SeperatorSegmentFilter"></bean>
+                <bean class="com.endeca.index.ngram.core.CleanEmptySegmentFilter"></bean>
+            </list>
+        </property>
+    </bean>
+    
+    <bean id="gramFilterChain" class="com.endeca.index.ngram.core.GramFilterChain">
+        <property name="filterList">
+            <list>
+                <bean class="com.endeca.index.ngram.core.OmitSpaceGramFilter"></bean>
+            </list>
+        </property>
+    </bean>
+    
+    <bean id="combineFilterChain" class="com.endeca.index.ngram.core.GramFilterChain">
+        <property name="filterList">
+            <list>
+                <bean class="com.endeca.index.ngram.core.GramValueCombineFilter"></bean>
+            </list>
+        </property>
+    </bean>
+    
+</beans>
