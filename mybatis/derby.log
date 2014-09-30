@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Tue Sep 30 14:35:37 CST 2014:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.1 - (1616546): instance a816c00e-0148-c545-7804-000005d86ed0 
+on database directory D:\workspace\mybatis\firstdb with class loader sun.misc.Launcher$AppClassLoader@35f784d7 
+Loaded from file:/D:/lib/.m2/repository/org/apache/derby/derby/10.11.1.1/derby-10.11.1.1.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.7.0_45-b18
+user.dir=D:\workspace\mybatis
+os.name=Windows 7
+os.arch=amd64
+os.version=6.1
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
